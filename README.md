@@ -1,4 +1,1 @@
-# demos
-demos list
-
-add SingletonDemo
+# Simples
