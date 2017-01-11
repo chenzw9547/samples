@@ -1,8 +1,4 @@
 package cn.chenzw.simple_axis2.ws;
-
-import java.awt.List;
-import java.util.ArrayList;
-
 import javax.xml.namespace.QName;
 
 import junit.framework.Assert;
@@ -14,6 +10,12 @@ import org.apache.axis2.rpc.client.RPCServiceClient;
 
 import cn.chenzw.simple_axis2.bean.Weather;
 
+/**
+ * 使用POJO方式
+ * @see http://axis.apache.org/axis2/java/core/docs/pojoguide.html
+ * @author chenzw
+ * @date 2017年1月11日
+ */
 public class TestWeatherWs {
 
 	public static void main(String[] args) throws AxisFault {
@@ -77,6 +79,7 @@ public class TestWeatherWs {
 				System.out.println(w);
 			}
 		}
+		
 	}
 
 }
