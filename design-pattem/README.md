@@ -20,4 +20,16 @@
 - ** 具体观察者（ConcreteObserver）** ：实现接收方法，对接收到的数据进行更新。
 
 ## 2.1 [JDK提供的观察者模式](src/main/java/cn/chenzw/design_pattem/jdk_observer) :
-通过继承java.util.Observable类来创建主题类，通过实现java.util.Observer接口来创建观察者类，此处值得注意的是，在调用Observable类的notifyObservers()或notifyObservers(Object)前，必须先setChange()。
+通过继承java.util.Observable类来创建主题类，通过实现java.util.Observer接口来创建观察者类，此处值得注意的是，在调用Observable类的notifyObservers()或notifyObservers(Object)前，必须先调用setChanged()来标记状态已改变，否则不会通知观察者。
+
+## 3. [装饰者模式](src/main/java/cn/chenzw/design_pattem/decorator) :
+
+** 定义 ** : 动态地将责任附加到对象上。
+
+装饰者模式的设计原则为：对扩展开放、对修改关闭（想扩展被装饰者类的行为，无须修改装饰者抽象类，只需继承装饰者抽象类，实现额外的一些装饰或者叫行为即可对被装饰者进行包装。）
+
+装饰者模式主要有4个对象： （一个被装饰者对应多个装饰者）
+- ** 抽象被装饰者（Componenet）** ：定义了核心的业务方法
+- ** 具体被装饰者（ConcreteComponent）** ：实现Component接口，实现具体核心的业务
+- ** 抽象装饰者（Decorator）** ：实现Component接口，并使用策略模式，持有一个Component的引用。通常为虚类，避免被实例化。
+- ** 具体装饰者（ConcreteDecorator）** ：继承Decorator类（此继承主要是想达到装饰者和被装饰对象的类型匹配，而不是获得其行为），调用super的业务方法，并在此调用前后加上要装饰的业务逻辑。
