@@ -12,8 +12,9 @@ public class LazySingleton2 {
 	 */
 	private LazySingleton2() {
 	}
-
-	private static LazySingleton2 lazySingleton = null;
+	
+	//注意使用volatile关键字保持变量同步
+	private volatile static LazySingleton2 lazySingleton = null;
 
 	/**
 	 * 多线程环境下,该方法必须是同步的,否则可能导致创建多个实例. 

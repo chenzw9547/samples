@@ -64,3 +64,13 @@
 - **[懒汉模式](src/main/java/cn/chenzw/design_pattem/singleton/lazy)**
 - **[懒汉模式-使用双重检查锁](src/main/java/cn/chenzw/design_pattem/singleton/hungry)**
 - **[使用内部静态类](src/main/java/cn/chenzw/design_pattem/singleton/inner)**
+
+## 8. [命令模式](src/main/java/cn/chenzw/design_pattem/command) :
+
+**定义** ：将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。命令模式也支持可撤销的操作。
+
+命令模式有4个角色：
+- **Command** ：定义命令的接口，声明执行的方法。
+- **ConcreteCommand** ：命令接口实现对象，是“虚”的实现；通常会持有接收者，并调用接收者的功能来完成命令要执行的操作。
+- **Receiver** ：接收者，真正执行命令的对象。任何类都可能成为一个接收者，只要它能够实现命令要求实现的相应功能。
+- **Invoker** ：要求命令对象执行请求，通常会持有命令对象，可以持有很多的命令对象。这个是客户端真正触发命令并要求命令执行相应操作的地方，也就是说相当于使用命令对象的入口。
