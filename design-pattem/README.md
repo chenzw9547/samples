@@ -53,6 +53,14 @@
 - **抽象产品角色** ：产品的抽象类。一般由抽象类或者接口来实现。
 - **具体产品角色** ：具体工厂角色所创建的对象就是此角色的实例。
 
-## 6. [抽象工厂模式](src/main/java/cn/chenzw/design_pattem/abstract_factory) :
+## 6. [抽象工厂模式](src/main/java/cn/chenzw/design_pattem/absract_factory) :
 
 **定义** : 提供了一个接口，用于创建一系列`相关或依赖`对象的家族（`产品族`），而不需要明确指定具体类。
+
+## 7. [单例模式](src/main/java/cn/chenzw/design_pattem/singleton) :
+
+单例模式主要有以下几种实现方式：
+- **[恶汉模式](src/main/java/cn/chenzw/design_pattem/singleton/hungry)**
+- **[懒汉模式](src/main/java/cn/chenzw/design_pattem/singleton/lazy)**
+- **[懒汉模式-使用双重检查锁](src/main/java/cn/chenzw/design_pattem/singleton/hungry)**
+- **[使用内部静态类](src/main/java/cn/chenzw/design_pattem/singleton/inner)**
