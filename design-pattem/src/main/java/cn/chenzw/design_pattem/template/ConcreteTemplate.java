@@ -17,4 +17,9 @@ public class ConcreteTemplate extends AbstractTemplate {
 		System.out.println("operation3!");
 	}
 
+	@Override
+	protected boolean isExists() {
+		return true;
+	}
+
 }
