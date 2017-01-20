@@ -29,6 +29,13 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+  			<artifactId>servlet-api</artifactId>
+  			<version>2.3</version>
+			<scope>provided</scope>
+		</dependency>
+		
 
 		<!-- axis2 dependencies -->
 		<dependency>
@@ -57,8 +64,10 @@
 			<version>${axis2.version}</version>
 			<exclusions>
 				<exclusion>
+					<!-- <groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId> -->
 					<groupId>javax.servlet</groupId>
-					<artifactId>javax.servlet-api</artifactId>
+  					<artifactId>servlet-api</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>

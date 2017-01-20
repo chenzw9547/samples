@@ -1,4 +1,9 @@
 package cn.chenzw.simple_axis2.ws;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.xml.namespace.QName;
 
 import junit.framework.Assert;
@@ -9,9 +14,11 @@ import org.apache.axis2.client.Options;
 import org.apache.axis2.rpc.client.RPCServiceClient;
 
 import cn.chenzw.simple_axis2.bean.Weather;
+import cn.chenzw.simple_axis2.bean.WeekWeather;
 
 /**
  * 使用POJO方式
+ * 
  * @see http://axis.apache.org/axis2/java/core/docs/pojoguide.html
  * @author chenzw
  * @date 2017年1月11日
@@ -20,8 +27,9 @@ public class TestWeatherWs {
 
 	public static void main(String[] args) throws AxisFault {
 		TestWeatherWs weatherWs = new TestWeatherWs();
-		weatherWs.testArgsAndReturnObj();
-		weatherWs.testReturnList();
+		// weatherWs.testArgsAndReturnObj();
+		// weatherWs.testReturnList();
+		weatherWs.testComplexObje();
 	}
 
 	/**
@@ -37,7 +45,7 @@ public class TestWeatherWs {
 				"http://localhost:8989/simple-axis2/services/weatherService");
 		options.setTo(targetEPR);
 
-		//构建调用方法的参数
+		// 构建调用方法的参数
 		Weather weather = new Weather();
 		weather.setTemperature(39.3f);
 		weather.setForecast("Cloudy with showers");
@@ -50,7 +58,7 @@ public class TestWeatherWs {
 		for (Object retObj : retObjs) {
 			if (retObj instanceof Weather) {
 				Weather todayWeather = (Weather) retObj;
-				Assert.assertEquals(weather, todayWeather);
+				// Assert.assertEquals(weather, todayWeather);
 			}
 		}
 	}
@@ -79,7 +87,45 @@ public class TestWeatherWs {
 				System.out.println(w);
 			}
 		}
-		
+
 	}
 
+	/**
+	 * 测试复杂对象
+	 * 
+	 * @throws AxisFault
+	 */
+	public void testComplexObje() throws AxisFault {
+		RPCServiceClient serviceClient = new RPCServiceClient();
+		Options options = serviceClient.getOptions();
+
+		EndpointReference targetEPR = new EndpointReference(
+				"http://localhost:8989/simple-axis2/services/weatherService");
+		options.setTo(targetEPR);
+
+		//构建
+		List<Weather> weatherList = new ArrayList<Weather>();
+		for (int i = 0; i < 7; i++) {
+			Weather weather = new Weather();
+			weather.setRain(false);
+			weather.setForecast("晴天");
+			weatherList.add(weather);
+		}
+
+		WeekWeather weekWeather = new WeekWeather();
+		weekWeather.setDate(new Date());
+		weekWeather.setWeathers(weatherList.toArray(new Weather[1]));
+
+		Object[] retObjs = serviceClient
+				.invokeBlocking(new QName("http://ws.simple_axis2.chenzw.cn",
+						"getWeekWeather2"), new Object[] { weekWeather },
+						new Class[] { WeekWeather.class });
+
+		for (Object retObj : retObjs) {
+			if (retObj instanceof WeekWeather) {
+				WeekWeather ww = (WeekWeather) retObj;  //复杂对象，里面带着对象数组
+				System.out.println(ww);
+			}
+		}
+	}
 }
