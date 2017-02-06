@@ -1,4 +1,4 @@
-# Aixs2 Sample:
+﻿# Aixs2 Sample:
 #### 步骤如下(使用POJO方式):
 1. WEB-INF/web.xml中添加Axis2的Servlet入口:
 ```
@@ -17,6 +17,24 @@
 ```
 
 2. 创建services.xml,放到WEB-INF/services/项目名/META-INF目录下。
+eg. 
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+	<!-- 发布的service名称为weatherService -->
+	<service name="weatherService">
+		<description>POJO</description>
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+				class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</messageReceivers>
+		<!-- 指定service的全限定名类 -->
+		<parameter name="ServiceClass">cn.chenzw.simple_axis2.ws.WeatherWs</parameter>
+	</service>
+</serviceGroup>
+```
 
 3. 使用maven配置jar包依赖(最少配置):
 ```
