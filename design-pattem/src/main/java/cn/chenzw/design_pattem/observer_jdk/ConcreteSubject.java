@@ -11,7 +11,7 @@ public class ConcreteSubject extends Observable {
 	public void change(String msg) {
 		// 注意,必须先设置setChange(),再调用通知
 		setChanged();
-		notifyObservers(msg);
+		notifyObservers(msg); 
 	}
 
 }

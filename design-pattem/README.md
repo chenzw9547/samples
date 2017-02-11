@@ -1,4 +1,4 @@
-# 设计模式 Samples:
+﻿# 设计模式 Samples:
 ## 1. [策略模式(算法簇模式)](src/main/java/cn/chenzw/design_pattem/strategy) :
 
 **定义** :定义了不同的算法族（实现共同的接口），并且之间可以互相替换，此模式让算法的变化独立于使用算法的客户。
@@ -125,3 +125,8 @@
 - **上下文环境（Context）**：它定义了客户程序需要的接口并维护一个具体状态角色的实例，将与状态相关的操作委托给当前的Concrete State对象来处理。
 - **抽象状态（State）**：定义一个接口以封装使用上下文环境的的一个特定状态相关的行为。
 - **具体状态（Concrete State）**：实现抽象状态定义的接口。
+
+14. [Future模式](src/main/java/cn/chenzw/design_pattem/jdk_future) :
+
+
+
