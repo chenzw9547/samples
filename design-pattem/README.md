@@ -117,7 +117,7 @@
 
 **特征** ：代理类与委托类有同样的接口（与装饰者模式有点类似）
 
-13. [状态模式](src/main/java/cn/chenzw/design_pattem/state) :
+## 13. [状态模式](src/main/java/cn/chenzw/design_pattem/state) :
 
 **定义** : 允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。
 
@@ -126,7 +126,7 @@
 - **抽象状态（State）**：定义一个接口以封装使用上下文环境的的一个特定状态相关的行为。
 - **具体状态（Concrete State）**：实现抽象状态定义的接口。
 
-14. [Future模式](src/main/java/cn/chenzw/design_pattem/jdk_future) :
+## 14. [Future模式](src/main/java/cn/chenzw/design_pattem/jdk_future) :
 
 
 
