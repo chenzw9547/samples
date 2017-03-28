@@ -12,8 +12,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-framework.version>4.3.3.RELEASE</spring-framework.version>
 		<java.version>1.7</java.version>
 		<axis2.version>1.6.2</axis2.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<log4j2.version>2.7</log4j2.version>
 	</properties>
 
 	<dependencies>
@@ -21,7 +24,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
-			<scope>test</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -29,13 +32,6 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-  			<artifactId>servlet-api</artifactId>
-  			<version>2.3</version>
-			<scope>provided</scope>
-		</dependency>
-		
 
 		<!-- axis2 dependencies -->
 		<dependency>
@@ -64,28 +60,108 @@
 			<version>${axis2.version}</version>
 			<exclusions>
 				<exclusion>
-					<!-- <groupId>javax.servlet</groupId>
-					<artifactId>javax.servlet-api</artifactId> -->
 					<groupId>javax.servlet</groupId>
-  					<artifactId>servlet-api</artifactId>
+					<artifactId>servlet-api</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 		<!--/ axis2 dependencies -->
+		<!-- axis2-spring -->
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-spring</artifactId>
+			<version>${axis2.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>axis2-kernel</artifactId>
+					<groupId>org.apache.axis2</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- /axis2-spring -->
+
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!--/slf4j -->
+		<!-- log4j-slf4j-impl : Slf4j到Log4j2的桥接 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<!--/log4j-slf4j-impl -->
+		<!-- log4j-jcl：commons logging到log4j2的桥接 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<!--/log4j-jcl -->
+		<!-- log4j2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<!-- /log4j2 -->
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<!-- /spring -->
 	</dependencies>
 	<build>
 		<finalName>simple-axis2</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
 				<configuration>
-					<!-- <port>8989</port> -->
-					<url>http://localhost:8989/manager/text</url>
-					<server>tomcat</server>
-					<username>admin</username>
-					<password>1234</password>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>

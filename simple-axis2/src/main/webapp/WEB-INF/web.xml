@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
+
+	<servlet>
+		<servlet-name>spring-servlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring-servlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
 	<!-- axis2 servlet -->
 	<servlet>
 		<servlet-name>AxisServlet</servlet-name>
 		<servlet-class>
 			org.apache.axis2.transport.http.AxisServlet
 		</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AxisServlet</servlet-name>
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
 	<!--/ axis2 servlet -->
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
 </web-app>

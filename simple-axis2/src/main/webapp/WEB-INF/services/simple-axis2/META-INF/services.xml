@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serviceGroup>
-	<service name="weatherService">
+	<service name="WeatherService">
 		<description>POJO</description>
 		<messageReceivers>
 			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
@@ -8,6 +8,20 @@
 			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
 				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
 		</messageReceivers>
-		<parameter name="ServiceClass">cn.chenzw.simple_axis2.ws.WeatherWs</parameter>
+		<parameter name="ServiceClass">cn.chenzw.simple_axis2.ws.WeatherWs
+		</parameter>
+	</service>
+
+	<service name="WeatherSpringService">
+		<description>POJO SPRING</description>
+		<!-- <parameter name="ServiceClass">cn.chenzw.simple_axis2.ws.WeatherSpringWs
+		</parameter> -->
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+		</parameter>
+		<parameter name="SpringBeanName">weatherSpringWs</parameter>
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out"
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</messageReceivers>
 	</service>
 </serviceGroup>
